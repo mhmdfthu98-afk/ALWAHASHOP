@@ -13,99 +13,107 @@
         <div class="text-center">
             <div class="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p class="text-gray-600">جاري التحميل...</p>
-            <p id="loadingStatus" class="text-sm text-gray-400 mt-2">جاري الاتصال بقاعدة البيانات...</p>
+            <p id="status" class="text-sm text-gray-400 mt-2">جاري الاتصال...</p>
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي -->
+    <!-- التطبيق -->
     <div id="app" class="hidden">
+        <!-- الهيدر -->
         <div class="bg-emerald-600 text-white p-4 text-center">
             <h1 class="text-2xl font-bold">🏝️ الواحة</h1>
             <p class="text-sm">متجر شحن الألعاب</p>
         </div>
-        <div class="p-4 max-w-6xl mx-auto">
-            <div id="authSection" class="bg-white rounded-2xl shadow-lg p-6 max-w-md mx-auto mt-10">
+
+        <div class="p-4 max-w-md mx-auto">
+            <!-- شاشة تسجيل الدخول -->
+            <div id="authBox" class="bg-white rounded-2xl shadow-lg p-6 mt-10">
                 <h2 class="text-2xl font-bold text-center text-emerald-700 mb-6">تسجيل الدخول</h2>
-                <div id="errorMsg" class="hidden bg-red-100 text-red-700 p-3 rounded-xl mb-4 text-center"></div>
+                
+                <div id="errorBox" class="hidden bg-red-100 text-red-700 p-3 rounded-xl mb-4 text-center text-sm"></div>
+                <div id="successBox" class="hidden bg-green-100 text-green-700 p-3 rounded-xl mb-4 text-center text-sm"></div>
+
                 <input id="loginEmail" type="email" placeholder="البريد الإلكتروني" class="w-full p-3 border rounded-xl mb-3">
                 <input id="loginPassword" type="password" placeholder="كلمة المرور" class="w-full p-3 border rounded-xl mb-3">
-                <button id="loginBtn" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700">تسجيل الدخول</button>
-                <hr class="my-4">
-                <button id="googleBtn" class="w-full bg-white border py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-50">
-                    <i class="fab fa-google"></i> دخول عبر جوجل
+                
+                <button id="loginBtn" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition">
+                    تسجيل الدخول
                 </button>
+
+                <hr class="my-4">
+
+                <button id="googleBtn" class="w-full bg-white border py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-50 transition">
+                    <i class="fab fa-google text-red-500"></i> دخول عبر جوجل
+                </button>
+
                 <p class="text-center mt-4 text-sm text-gray-500">
-                    ليس لديك حساب؟ <a href="#" id="showRegister" class="text-emerald-600 font-bold">إنشاء حساب</a>
+                    ليس لديك حساب؟ 
+                    <a href="#" id="showRegister" class="text-emerald-600 font-bold">إنشاء حساب</a>
                 </p>
             </div>
 
-            <div id="registerSection" class="hidden bg-white rounded-2xl shadow-lg p-6 max-w-md mx-auto mt-10">
+            <!-- شاشة إنشاء حساب -->
+            <div id="registerBox" class="hidden bg-white rounded-2xl shadow-lg p-6 mt-10">
                 <h2 class="text-2xl font-bold text-center text-emerald-700 mb-6">إنشاء حساب</h2>
+
                 <input id="regName" type="text" placeholder="الاسم الكامل" class="w-full p-3 border rounded-xl mb-3">
                 <input id="regEmail" type="email" placeholder="البريد الإلكتروني" class="w-full p-3 border rounded-xl mb-3">
-                <input id="regPassword" type="password" placeholder="كلمة المرور" class="w-full p-3 border rounded-xl mb-3">
-                <button id="registerBtn" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700">إنشاء حساب</button>
+                <input id="regPassword" type="password" placeholder="كلمة المرور (6 أحرف على الأقل)" class="w-full p-3 border rounded-xl mb-3">
+
+                <button id="registerBtn" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition">
+                    إنشاء حساب
+                </button>
+
                 <p class="text-center mt-4 text-sm text-gray-500">
-                    لديك حساب؟ <a href="#" id="showLogin" class="text-emerald-600 font-bold">تسجيل الدخول</a>
+                    لديك حساب؟ 
+                    <a href="#" id="showLogin" class="text-emerald-600 font-bold">تسجيل الدخول</a>
                 </p>
             </div>
 
+            <!-- المحتوى الرئيسي بعد تسجيل الدخول -->
             <div id="mainContent" class="hidden">
-                <div id="userInfo" class="bg-white rounded-2xl shadow-lg p-4 mb-4 flex justify-between items-center">
+                <div class="bg-white rounded-2xl shadow-lg p-4 mb-4 flex justify-between items-center">
                     <div>
-                        <p class="font-bold" id="userName">...</p>
-                        <p class="text-sm text-gray-500">رصيد: <span id="userBalance" class="text-emerald-600 font-bold">0</span> ج.س</p>
+                        <p class="font-bold text-lg" id="userName">...</p>
+                        <p class="text-sm text-gray-500">💰 الرصيد: <span id="userBalance" class="text-emerald-600 font-bold">0</span> ج.س</p>
+                        <p class="text-xs text-gray-400">#<span id="userWallet">000000</span></p>
                     </div>
-                    <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded-xl text-sm">تسجيل خروج</button>
+                    <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded-xl text-sm hover:bg-red-600 transition">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
                 </div>
 
-                <div id="servicesGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- سيتم تعبئتها -->
-                </div>
-
-                <div id="adminPanel" class="hidden mt-6 bg-white rounded-2xl shadow-lg p-4">
-                    <h3 class="font-bold text-emerald-700 mb-3">👑 لوحة الأدمن</h3>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <button onclick="loadAdminData()" class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-lg text-sm">📊 تحديث</button>
-                        <button onclick="showAddProduct()" class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-sm">➕ إضافة منتج</button>
-                    </div>
-                    <div id="adminData" class="text-sm">
-                        <p>👥 المستخدمين: <span id="totalUsers">0</span></p>
-                        <p>📋 الطلبات المعلقة: <span id="pendingOrders">0</span></p>
-                    </div>
-                    <div id="addProductForm" class="hidden mt-3 space-y-2">
-                        <input id="prodName" placeholder="اسم المنتج" class="w-full p-2 border rounded-lg">
-                        <input id="prodPrice" type="number" placeholder="السعر" class="w-full p-2 border rounded-lg">
-                        <select id="prodCategory" class="w-full p-2 border rounded-lg">
-                            <option value="pubg">ببجي</option>
-                            <option value="freefire">فري فاير</option>
-                            <option value="clash">كلاش</option>
-                            <option value="efootball">eFootball</option>
-                            <option value="netflix">نتفليكس</option>
-                            <option value="googleplay">جوجل بلاي</option>
-                            <option value="tiktok">تيك توك</option>
-                            <option value="ai">ذكاء اصطناعي</option>
-                        </select>
-                        <button onclick="addNewProduct()" class="w-full bg-emerald-600 text-white py-2 rounded-lg">إضافة</button>
+                <div id="adminPanel" class="hidden bg-white rounded-2xl shadow-lg p-4 mb-4">
+                    <h3 class="font-bold text-emerald-700 mb-2">👑 لوحة الأدمن</h3>
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <div class="bg-gray-50 p-2 rounded-lg text-center">
+                            <p class="text-gray-500">المستخدمين</p>
+                            <p class="font-bold text-emerald-600" id="totalUsers">0</p>
+                        </div>
+                        <div class="bg-gray-50 p-2 rounded-lg text-center">
+                            <p class="text-gray-500">طلبات معلقة</p>
+                            <p class="font-bold text-emerald-600" id="pendingOrders">0</p>
+                        </div>
                     </div>
                 </div>
 
-                <div id="ordersList" class="mt-6 space-y-3">
-                    <!-- طلبات المستخدم -->
+                <div id="ordersList" class="space-y-3">
+                    <p class="text-center text-gray-500">لا توجد طلبات</p>
                 </div>
+
+                <button id="testBtn" class="w-full mt-4 bg-blue-500 text-white py-2 rounded-xl">اختبار الاتصال</button>
             </div>
         </div>
     </div>
 
     <script type="module">
         // ============================================
-        // Firebase - استيراد مباشر من CDN
+        // Firebase Setup
         // ============================================
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { 
             getFirestore, collection, doc, setDoc, getDoc, getDocs,
-            updateDoc, deleteDoc, query, where, orderBy,
-            onSnapshot, increment, serverTimestamp, runTransaction 
+            query, where, orderBy, onSnapshot, increment, serverTimestamp 
         } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         import {
             getAuth,
@@ -117,114 +125,43 @@
             signOut
         } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // ============================================
-        // إعدادات Firebase
-        // ============================================
         const firebaseConfig = {
             apiKey: "AIzaSyBiIhF2PrNIhEZA4RO235F-3Y1nmIJiMOs",
             authDomain: "oasis-store-87d2d.firebaseapp.com",
-            databaseURL: "https://oasis-store-87d2d-default-rtdb.firebaseio.com",
             projectId: "oasis-store-87d2d",
             storageBucket: "oasis-store-87d2d.firebasestorage.app",
             messagingSenderId: "128718200720",
             appId: "1:128718200720:web:a90e330c428cac1db2dd15"
         };
 
-        // ============================================
-        // تهيئة Firebase
-        // ============================================
-        let app, db, auth, provider;
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-        try {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            provider = new GoogleAuthProvider();
-            document.getElementById('loadingStatus').textContent = '✅ تم الاتصال بقاعدة البيانات!';
-            console.log('✅ Firebase initialized successfully');
-        } catch (error) {
-            document.getElementById('loadingStatus').textContent = '❌ خطأ: ' + error.message;
-            console.error('❌ Firebase init error:', error);
-        }
-
-        // ============================================
-        // المتغيرات العامة
-        // ============================================
         const ADMIN_EMAIL = 'mhmdfthu98@gmail.com';
         let currentUser = null;
 
         // ============================================
-        // دوال الإشعارات
+        // دوال مساعدة
         // ============================================
-        function showToast(msg, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `fixed bottom-20 right-4 p-4 rounded-xl shadow-lg z-50 max-w-sm ${type === 'error' ? 'bg-red-500' : 'bg-emerald-500'} text-white`;
-            toast.textContent = msg;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+        function showToast(msg, type = 'success') {
+            const box = document.getElementById(type === 'error' ? 'errorBox' : 'successBox');
+            box.textContent = msg;
+            box.classList.remove('hidden');
+            setTimeout(() => box.classList.add('hidden'), 4000);
         }
 
-        // ============================================
-        // دوال المنتجات
-        // ============================================
-        const CATEGORIES = {
-            pubg: '🎮 ببجي',
-            freefire: '🔥 فري فاير',
-            clash: '👑 كلاش',
-            efootball: '⚽ eFootball',
-            netflix: '🎬 نتفليكس',
-            googleplay: '🛍️ جوجل بلاي',
-            tiktok: '🎵 تيك توك',
-            ai: '🤖 ذكاء اصطناعي'
-        };
-
-        const CATEGORY_ICONS = {
-            pubg: 'https://i.ibb.co/Pzxr7M06/IMG.png',
-            freefire: 'https://i.ibb.co/JwTt6xQS/IMG.png',
-            clash: 'https://i.ibb.co/8DWbJvFL/IMG.png',
-            efootball: 'https://i.ibb.co/HfxMcj4T/IMG.png',
-            netflix: 'https://i.ibb.co/PsqRGPHR/IMG.png',
-            googleplay: 'https://i.ibb.co/cSm7F7Ry/IMG.png',
-            tiktok: 'https://i.ibb.co/B2Vhg5Rv/IMG.png',
-            ai: 'https://i.ibb.co/8DZGctQM/IMG.png'
-        };
-
-        async function loadProducts() {
-            try {
-                const products = {};
-                for (const cat of Object.keys(CATEGORIES)) {
-                    const q = query(collection(db, 'products'), where('category', '==', cat));
-                    const snap = await getDocs(q);
-                    products[cat] = [];
-                    snap.forEach(doc => products[cat].push({ id: doc.id, ...doc.data() }));
-                }
-                return products;
-            } catch (error) {
-                console.error('Error loading products:', error);
-                return {};
-            }
-        }
-
-        async function renderServices() {
-            const grid = document.getElementById('servicesGrid');
-            const products = await loadProducts();
-            
-            grid.innerHTML = Object.keys(CATEGORIES).map(cat => `
-                <div class="bg-white rounded-2xl shadow p-4 text-center cursor-pointer hover:shadow-lg transition" onclick="showCategory('${cat}')">
-                    <img src="${CATEGORY_ICONS[cat]}" class="w-full h-24 object-contain mb-2">
-                    <h3 class="font-bold">${CATEGORIES[cat]}</h3>
-                    <p class="text-xs text-gray-500">${(products[cat] || []).length} منتج</p>
-                </div>
-            `).join('');
+        function updateStatus(msg) {
+            document.getElementById('status').textContent = msg;
         }
 
         // ============================================
         // دوال المستخدم
         // ============================================
         async function createUserProfile(user, name) {
-            const userRef = doc(db, 'users', user.uid);
             const walletID = Math.floor(100000 + Math.random() * 900000).toString();
-            await setDoc(userRef, {
+            await setDoc(doc(db, 'users', user.uid), {
                 uid: user.uid,
                 name: name || user.displayName || 'مستخدم',
                 email: user.email,
@@ -233,12 +170,12 @@
                 isAdmin: user.email === ADMIN_EMAIL,
                 createdAt: serverTimestamp()
             });
-            return { name: user.displayName || name, walletID };
+            return walletID;
         }
 
         async function getUserData(uid) {
-            const docSnap = await getDoc(doc(db, 'users', uid));
-            if (docSnap.exists()) return { id: uid, ...docSnap.data() };
+            const snap = await getDoc(doc(db, 'users', uid));
+            if (snap.exists()) return { id: uid, ...snap.data() };
             return null;
         }
 
@@ -246,67 +183,204 @@
         // دوال المصادقة
         // ============================================
         function showAuth() {
-            document.getElementById('authSection').classList.remove('hidden');
-            document.getElementById('registerSection').classList.add('hidden');
+            document.getElementById('authBox').classList.remove('hidden');
+            document.getElementById('registerBox').classList.add('hidden');
             document.getElementById('mainContent').classList.add('hidden');
         }
 
         function showMain() {
-            document.getElementById('authSection').classList.add('hidden');
-            document.getElementById('registerSection').classList.add('hidden');
+            document.getElementById('authBox').classList.add('hidden');
+            document.getElementById('registerBox').classList.add('hidden');
             document.getElementById('mainContent').classList.remove('hidden');
         }
 
+        // تبديل الشاشات
         document.getElementById('showRegister').addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('authSection').classList.add('hidden');
-            document.getElementById('registerSection').classList.remove('hidden');
+            document.getElementById('authBox').classList.add('hidden');
+            document.getElementById('registerBox').classList.remove('hidden');
         });
 
         document.getElementById('showLogin').addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('registerSection').classList.add('hidden');
-            document.getElementById('authSection').classList.remove('hidden');
+            document.getElementById('registerBox').classList.add('hidden');
+            document.getElementById('authBox').classList.remove('hidden');
         });
 
+        // تسجيل الدخول
         document.getElementById('loginBtn').addEventListener('click', async () => {
-            const email = document.getElementById('loginEmail').value;
+            const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showToast('❌ أدخل البريد الإلكتروني وكلمة المرور', 'error');
+                return;
+            }
+
             try {
+                updateStatus('🔄 جاري تسجيل الدخول...');
                 await signInWithEmailAndPassword(auth, email, password);
-                showToast('✅ تم تسجيل الدخول');
+                showToast('✅ تم تسجيل الدخول بنجاح!');
+                updateStatus('✅ تم تسجيل الدخول');
             } catch (error) {
                 showToast('❌ ' + error.message, 'error');
+                updateStatus('❌ فشل تسجيل الدخول');
+                console.error('Login error:', error);
             }
         });
 
+        // إنشاء حساب
         document.getElementById('registerBtn').addEventListener('click', async () => {
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
             const password = document.getElementById('regPassword').value;
+
+            if (!name || !email || !password) {
+                showToast('❌ جميع الحقول مطلوبة', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showToast('❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                return;
+            }
+
             try {
+                updateStatus('🔄 جاري إنشاء الحساب...');
                 const cred = await createUserWithEmailAndPassword(auth, email, password);
                 await createUserProfile(cred.user, name);
-                showToast('✅ تم إنشاء الحساب');
+                showToast('✅ تم إنشاء الحساب بنجاح!');
+                updateStatus('✅ تم إنشاء الحساب');
             } catch (error) {
                 showToast('❌ ' + error.message, 'error');
+                updateStatus('❌ فشل إنشاء الحساب');
+                console.error('Register error:', error);
             }
         });
 
+        // تسجيل دخول بجوجل
         document.getElementById('googleBtn').addEventListener('click', async () => {
             try {
+                updateStatus('🔄 جاري تسجيل الدخول بجوجل...');
                 const result = await signInWithPopup(auth, provider);
                 const userData = await getUserData(result.user.uid);
-                if (!userData) await createUserProfile(result.user);
-                showToast('✅ تم تسجيل الدخول');
+                if (!userData) {
+                    await createUserProfile(result.user);
+                }
+                showToast('✅ تم تسجيل الدخول بنجاح!');
+                updateStatus('✅ تم تسجيل الدخول');
             } catch (error) {
                 showToast('❌ ' + error.message, 'error');
+                updateStatus('❌ فشل تسجيل الدخول');
+                console.error('Google login error:', error);
             }
         });
 
+        // تسجيل الخروج
         document.getElementById('logoutBtn').addEventListener('click', async () => {
             await signOut(auth);
             showToast('👋 تم تسجيل الخروج');
+        });
+
+        // ============================================
+        // تحميل بيانات المستخدم
+        // ============================================
+        async function loadUserData(user) {
+            const userData = await getUserData(user.uid);
+            if (!userData) return null;
+
+            currentUser = userData;
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userBalance').textContent = userData.balance || 0;
+            document.getElementById('userWallet').textContent = userData.walletID || '000000';
+
+            // لوحة الأدمن
+            if (userData.isAdmin) {
+                document.getElementById('adminPanel').classList.remove('hidden');
+                await loadAdminStats();
+            }
+
+            // تحميل الطلبات
+            await loadOrders(user.uid);
+
+            return userData;
+        }
+
+        // ============================================
+        // تحميل الطلبات
+        // ============================================
+        async function loadOrders(uid) {
+            const container = document.getElementById('ordersList');
+            try {
+                const q = query(
+                    collection(db, 'orders'),
+                    where('userId', '==', uid),
+                    orderBy('createdAt', 'desc')
+                );
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    container.innerHTML = '<p class="text-center text-gray-500">📭 لا توجد طلبات</p>';
+                    return;
+                }
+
+                container.innerHTML = snap.docs.map(doc => {
+                    const o = doc.data();
+                    const statusColor = o.status === 'مكتمل' ? 'bg-green-100 text-green-700' :
+                                      o.status === 'فشل' ? 'bg-red-100 text-red-700' :
+                                      'bg-yellow-100 text-yellow-700';
+                    return `
+                        <div class="bg-white rounded-2xl shadow p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-bold">${o.product}</p>
+                                    <p class="text-sm text-gray-500">🆔 ${o.gameID || '---'}</p>
+                                </div>
+                                <span class="text-xs px-3 py-1 rounded-full ${statusColor}">${o.status || 'قيد الانتظار'}</span>
+                            </div>
+                            <div class="flex justify-between mt-2 text-sm">
+                                <span class="text-gray-600">💰 ${o.price || 0} ج.س</span>
+                                <span class="text-gray-400">📞 ${o.phone || '---'}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading orders:', error);
+                container.innerHTML = '<p class="text-center text-red-500">⚠️ خطأ في تحميل الطلبات</p>';
+            }
+        }
+
+        // ============================================
+        // إحصائيات الأدمن
+        // ============================================
+        async function loadAdminStats() {
+            try {
+                const usersSnap = await getDocs(collection(db, 'users'));
+                document.getElementById('totalUsers').textContent = usersSnap.size;
+
+                const ordersSnap = await getDocs(query(
+                    collection(db, 'orders'),
+                    where('status', '==', 'قيد الانتظار')
+                ));
+                document.getElementById('pendingOrders').textContent = ordersSnap.size;
+            } catch (error) {
+                console.error('Error loading admin stats:', error);
+            }
+        }
+
+        // ============================================
+        // زر الاختبار
+        // ============================================
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            try {
+                const testRef = doc(db, 'test', 'test');
+                await setDoc(testRef, { test: true, time: serverTimestamp() });
+                showToast('✅ الاتصال بقاعدة البيانات يعمل!');
+            } catch (error) {
+                showToast('❌ خطأ في الاتصال: ' + error.message, 'error');
+                console.error('Test error:', error);
+            }
         });
 
         // ============================================
@@ -317,24 +391,14 @@
             const app = document.getElementById('app');
 
             if (user) {
-                const userData = await getUserData(user.uid);
-                if (userData) {
-                    currentUser = userData;
-                    document.getElementById('userName').textContent = userData.name;
-                    document.getElementById('userBalance').textContent = userData.balance || 0;
-
-                    if (userData.isAdmin) {
-                        document.getElementById('adminPanel').classList.remove('hidden');
-                        await loadAdminData();
-                    }
-
-                    showMain();
-                    await renderServices();
-                    await loadUserOrders();
-                }
+                updateStatus('🔄 جاري تحميل البيانات...');
+                await loadUserData(user);
+                showMain();
+                updateStatus('✅ مرحباً بك!');
             } else {
                 currentUser = null;
                 showAuth();
+                updateStatus('✅ جاهز لتسجيل الدخول');
             }
 
             loading.classList.add('hidden');
@@ -342,95 +406,11 @@
         });
 
         // ============================================
-        // دوال الأدمن
-        // ============================================
-        window.loadAdminData = async function() {
-            try {
-                const usersSnap = await getDocs(collection(db, 'users'));
-                document.getElementById('totalUsers').textContent = usersSnap.size;
-
-                const ordersSnap = await getDocs(query(collection(db, 'orders'), where('status', '==', 'قيد الانتظار')));
-                document.getElementById('pendingOrders').textContent = ordersSnap.size;
-            } catch (error) {
-                showToast('❌ خطأ في تحميل البيانات', 'error');
-            }
-        };
-
-        window.showAddProduct = function() {
-            document.getElementById('addProductForm').classList.toggle('hidden');
-        };
-
-        window.addNewProduct = async function() {
-            const name = document.getElementById('prodName').value;
-            const price = parseInt(document.getElementById('prodPrice').value);
-            const category = document.getElementById('prodCategory').value;
-
-            if (!name || !price) {
-                showToast('❌ أدخل اسم المنتج والسعر', 'error');
-                return;
-            }
-
-            try {
-                const newProduct = {
-                    id: category + '_' + Date.now(),
-                    name,
-                    price,
-                    category,
-                    createdAt: serverTimestamp()
-                };
-                await setDoc(doc(db, 'products', newProduct.id), newProduct);
-                showToast('✅ تم إضافة المنتج');
-                document.getElementById('prodName').value = '';
-                document.getElementById('prodPrice').value = '';
-                await renderServices();
-            } catch (error) {
-                showToast('❌ ' + error.message, 'error');
-            }
-        };
-
-        // ============================================
-        // دوال الطلبات
-        // ============================================
-        async function loadUserOrders() {
-            if (!currentUser) return;
-            const container = document.getElementById('ordersList');
-            try {
-                const q = query(collection(db, 'orders'), where('userId', '==', currentUser.uid), orderBy('createdAt', 'desc'));
-                const snap = await getDocs(q);
-                if (snap.empty) {
-                    container.innerHTML = '<p class="text-center text-gray-500">لا توجد طلبات</p>';
-                    return;
-                }
-                container.innerHTML = snap.docs.map(doc => {
-                    const o = doc.data();
-                    return `
-                        <div class="bg-white rounded-2xl shadow p-4">
-                            <div class="flex justify-between">
-                                <span class="font-bold">${o.product}</span>
-                                <span class="text-sm px-2 py-1 rounded-full ${o.status === 'مكتمل' ? 'bg-green-100 text-green-700' : o.status === 'فشل' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}">${o.status}</span>
-                            </div>
-                            <p class="text-sm text-gray-500">💰 ${o.price} ج.س | 📞 ${o.phone}</p>
-                        </div>
-                    `;
-                }).join('');
-            } catch (error) {
-                console.error('Error loading orders:', error);
-            }
-        }
-
-        // ============================================
-        // عرض الفئات
-        // ============================================
-        window.showCategory = function(category) {
-            showToast('📦 جاري تحميل منتجات ' + CATEGORIES[category]);
-            // هتضيف صفحة الفئة هنا
-        };
-
-        // ============================================
         // بدء التشغيل
         // ============================================
-        console.log('🏝️ مرحباً بك في متجر الواحة!');
+        console.log('🏝️ متجر الواحة');
         console.log('📧 الأدمن: ' + ADMIN_EMAIL);
+        updateStatus('🔄 جاري التهيئة...');
     </script>
 </body>
 </html>
